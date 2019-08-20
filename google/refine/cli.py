@@ -121,7 +121,7 @@ def create(project_file,
         skip_data_lines=skipDataLines,
         store_blank_rows=storeBlankRows,
         process_quotes=processQuotes,
-        project_name=projectName,        
+        project_name=projectName,
         store_blank_cells_as_nulls=storeBlankCellsAsNulls,
         include_file_sources=includeFileSources,
         **kwargs)
