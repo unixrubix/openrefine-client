@@ -32,19 +32,19 @@ To use the client:
 
    - Windows: Open PowerShell and enter following command
 
-     ```
+     ```sh
      cd ~\Downloads
      ```
 
    - macOS: Open Terminal (Finder > Applications > Utilities > Terminal) and enter following command
 
-     ```
+     ```sh
      cd ~/Downloads
      ```
 
    - Linux: Open terminal app (Terminal, Konsole, xterm, ...) and enter following command
 
-     ```
+     ```sh
      cd ~/Downloads
      ```
 
@@ -54,13 +54,13 @@ To use the client:
 
    - macOS:
 
-     ```
+     ```sh
      chmod +x openrefine-client_0-3-7_macos
      ```
 
    - Linux:
 
-     ```
+     ```sh
      chmod +x openrefine-client_0-3-7_linux
      ```
 
@@ -68,19 +68,19 @@ To use the client:
 
    - Windows:
 
-     ```
+     ```sh
      .\openrefine-client_0-3-7_windows.exe
      ```
 
    - macOS:
 
-     ```
+     ```sh
      ./openrefine-client_0-3-7_macos
      ```
 
    - Linux:
 
-     ```
+     ```sh
      ./openrefine-client_0-3-7_linux
      ```
 
@@ -99,7 +99,7 @@ Download example data (`--download`) and create project from file (`--create`):
 
 - Windows:
 
-  ```
+  ```sh
   .\openrefine-client_0-3-7_windows.exe --download "https://git.io/fj5hF" --output=duplicates.csv
   .\openrefine-client_0-3-7_windows.exe --download "https://git.io/fj5ju" --output=duplicates-deletion.json
   .\openrefine-client_0-3-7_windows.exe --create duplicates.csv
@@ -107,7 +107,7 @@ Download example data (`--download`) and create project from file (`--create`):
 
 - macOS:
 
-  ```
+  ```sh
   ./openrefine-client_0-3-7_macos --download "https://git.io/fj5hF" --output=duplicates.csv
   ./openrefine-client_0-3-7_macos --download "https://git.io/fj5ju" --output=duplicates-deletion.json
   ./openrefine-client_0-3-7_macos --create duplicates.csv
@@ -115,7 +115,7 @@ Download example data (`--download`) and create project from file (`--create`):
 
 - Linux:
 
-  ```
+  ```sh
   ./openrefine-client_0-3-7_linux --download "https://git.io/fj5hF" --output=duplicates.csv
   ./openrefine-client_0-3-7_linux --download "https://git.io/fj5ju" --output=duplicates-deletion.json
   ./openrefine-client_0-3-7_linux --create duplicates.csv
@@ -161,7 +161,7 @@ It even provides an additional feature for splitting results into multiple files
 
 To try out the functionality create another project from the example file above.
 
-```
+```sh
 --create duplicates.csv --projectName=advanced
 ```
 
@@ -173,7 +173,7 @@ The following example code will export...
 
 macOS/Linux Terminal (multi-line input with `\` ):
 
-```
+```sh
 "advanced" \
 --prefix='{ "events" : [
 ' \
@@ -188,7 +188,7 @@ macOS/Linux Terminal (multi-line input with `\` ):
 
 Windows PowerShell (multi-line input with `` ` ``; quotes needs to be doubled):
 
-```
+```sh
 "advanced" `
 --prefix='{ ""events"" : [
 ' `
@@ -204,14 +204,14 @@ Windows PowerShell (multi-line input with `` ` ``; quotes needs to be doubled):
 Add the following options to the last command (recall with `↑`) to store the results in multiple files.
 Each file will contain the prefix, an processed row, and the suffix.
 
-```
+```sh
 --output=advanced.json --splitToFiles=true
 ```
 
 Filenames are suffixed with the row number by default (e.g. `advanced_1.json`, `advanced_2.json` etc.).
 There is another option to use the value in the first column instead:
 
-```
+```sh
 --output=advanced.json --splitToFiles=true --suffixById=true
 ```
 
@@ -229,7 +229,7 @@ When using this option, the first column should contain unique identifiers.
 
 [felixlohmeier/openrefine-client](https://hub.docker.com/r/felixlohmeier/openrefine-client/) [![Docker](https://img.shields.io/microbadger/image-size/felixlohmeier/openrefine-client?label=docker)](https://hub.docker.com/r/felixlohmeier/openrefine-client/)
 
-```
+```sh
 docker pull felixlohmeier/openrefine-client:v0.3.7
 ```
 
@@ -237,7 +237,7 @@ docker pull felixlohmeier/openrefine-client:v0.3.7
 
 Run client and mount current directory as workspace:
 
-```
+```sh
 docker run --rm --network=host -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.7
 ```
 
@@ -245,13 +245,13 @@ The docker option `--network=host` allows you to connect to a local or remote Op
 
 - list projects on default URL (http://localhost:3333)
 
-  ```
+  ```sh
   docker run --rm --network=host -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.7 --list
   ```
 
 - list projects on a remote server (http://example.com)
 
-  ```
+  ```sh
   docker run --rm --network=host -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.7 -H example.com -P 80 --list
   ```
 
@@ -263,19 +263,19 @@ Run openrefine-client linked to a dockerized OpenRefine ([felixlohmeier/openrefi
 
 1. Create docker network
 
-   ```
+   ```sh
    docker network create openrefine
    ```
 
 2. Run server (will be available at http://localhost:3333)
 
-   ```
+   ```sh
    docker run -d -p 3333:3333 --network=openrefine --name=openrefine-server felixlohmeier/openrefine:3.2
    ```
 
 3. Run client with some [basic commands](#basic-commands): 1. download example files, 2. create project from file, 3. list projects, 4. show metadata, 5. export to terminal, 6. apply transformation rules (deduplication), 7. export again to terminal, 8. export to xls file and 9. delete project
 
-   ```
+   ```sh
    docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.7 --download "https://git.io/fj5hF" --output=duplicates.csv
    docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.7 --download "https://git.io/fj5ju" --output=duplicates-deletion.json
    docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.7 -H openrefine-server --create duplicates.csv
@@ -290,14 +290,14 @@ Run openrefine-client linked to a dockerized OpenRefine ([felixlohmeier/openrefi
 
 4. Stop and delete server:
 
-   ```
+   ```sh
    docker stop openrefine-server
    docker rm openrefine-server
    ```
 
 5. Delete docker network:
 
-   ```
+   ```sh
    docker network rm openrefine
    ```
 
@@ -309,7 +309,7 @@ Customize OpenRefine server:
 
 - Example for [allocating more memory](https://github.com/OpenRefine/OpenRefine/wiki/FAQ#out-of-memory-errors---feels-slow---could-not-reserve-enough-space-for-object-heap) to OpenRefine with additional option `-m 4G`
 
-  ```
+  ```sh
   docker run -d -p 3333:3333 --network=openrefine --name=openrefine-server felixlohmeier/openrefine:3.2 -i 0.0.0.0 -d /data -m 4G
   ```
 
@@ -317,13 +317,13 @@ Customize OpenRefine server:
   Check the [DockerHub repository](https://hub.docker.com/r/felixlohmeier/openrefine) for available tags.
   Example for OpenRefine `2.8` with same options as above:
 
-  ```
+  ```sh
   docker run -d -p 3333:3333 --network=openrefine --name=openrefine-server felixlohmeier/openrefine:2.8 -i 0.0.0.0 -d /data -m 4G
   ```
 
 - If you want OpenRefine to read and write persistent data in host directory (i.e. store projects) you can mount the container path `/data`. Example for host directory `/home/felix/refine`:
 
-  ```
+  ```sh
   docker run -d -p 3333:3333 -v /home/felix/refine:/data:z --network=openrefine name=openrefine-server felixlohmeier/openrefine:2.8 -i 0.0.0.0 -d /data -m 4G
   ```
 
@@ -336,8 +336,8 @@ See also:
 
 [openrefine-client](https://pypi.org/project/openrefine-client/) [![PyPI](https://img.shields.io/pypi/v/openrefine-client)](https://pypi.org/project/openrefine-client/) (requires Python 2.x)
 
-```
-pip install openrefine-client
+```sh
+python2 -m pip install openrefine-client --user
 ```
 
 This will install the package `openrefine-client` containing modules in `google.refine`.
@@ -346,7 +346,7 @@ A command line script `openrefine-client` will also be installed.
 
 ### Option 1: command line script
 
-```
+```sh
 openrefine-client --help
 ```
 
@@ -356,20 +356,20 @@ Usage: same commands as explained above (see [Basic Commands](#basic-commands) a
 
 Import module cli:
 
-```
+```python
 from google.refine import cli
 ```
 
 Change URL (if necessary):
 
-```
+```python
 cli.refine.REFINE_HOST = 'localhost'
 cli.refine.REFINE_PORT = '3333'
 ```
 
 Help screen:
 
-```
+```python
 help(cli)
 ```
 
@@ -377,59 +377,62 @@ Commands:
 
 * download (e.g. example data):
 
-  ```
+  ```python
   cli.download('https://git.io/fj5hF','duplicates.csv')
   cli.download('https://git.io/fj5ju','duplicates-deletion.json')
   ```
 
 * list projects:
 
-  ```
+  ```python
   cli.ls()
   ```
 
 * create project:
 
-  ```
+  ```python
   p1 = cli.create('duplicates.csv')
   ```
 
 * show metadata:
 
-  ```
+  ```python
   cli.info(p1.project_id)
   ```
 
 * apply rules from file to project:
 
-  ```
+  ```python
   cli.apply(p1.project_id, 'duplicates-deletion.json')
   ```
 
 * export project to terminal:
 
-  ```
+  ```python
   cli.export(p1.project_id)
   ```
 
 * export project to file in xls format:
 
-  ```
+  ```python
   cli.export(p1.project_id, 'deduped.xls')
   ```
 
 * export templating (see [Advanced Templating](#advanced-templating) above):
 
-  ```
-  cli.templating(p1.project_id, prefix='''{ "events" : [
-  ''', template='''    { "name" : {{jsonize(cells["name"].value)}}, "purchase" : {{jsonize(cells["purchase"].value)}} }''', rowSeparator=''',
-  ''', suffix='''
+  ```python
+  cli.templating(
+      p1.project_id,
+      prefix='''{ "events" : [
+  ''',template='''    { "name" : {{jsonize(cells["name"].value)}}, "purchase" : {{jsonize(cells["purchase"].value)}} }''',
+      rowSeparator=''',
+  ''',suffix='''
   ] }''')
   ```
 
 * delete project:
 
-  ```
+  ```python
   cli.delete(p1.project_id)
   ```
 
@@ -441,7 +444,7 @@ Some functions in the python client library are not yet compatible with OpenRefi
 
 Import module refine:
 
-```
+```python
 from google.refine import refine
 ```
 
@@ -449,39 +452,39 @@ Server Commands:
 
 * set up connection:
 
-  ```
+  ```python
   server1 = refine.Refine('http://localhost:3333')
   ```
 
 - show version:
 
-  ```
+  ```python
   server1.server.get_version()
   server1.server.version
   ```
 
 - list projects:
 
-  ```
+  ```python
   server1.list_projects()
   ```
 
   - pretty print the returned dict with json.dumps:
 
-    ```
+    ```python
     import json
     print(json.dumps(server1.list_projects(), indent=1))
     ```
 
-- create project (**function was edited in this fork**):
+- create project:
 
-  ```
+  ```python
   server1.new_project(project_file='duplicates.csv')
   ```
 
   * create and open the returned project in one step:
 
-    ```
+    ```python
     project1 = server1.new_project(project_file='duplicates.csv')
     ```
 
@@ -489,31 +492,31 @@ Project commands:
 
 * open project:
 
-  ```
+  ```python
   project1 = server1.open_project('1234567890123')
   ```
 
 * print full URL to project:
 
-  ```
+  ```python
   project1.project_url()
   ```
 
 * list columns:
 
-  ```
+  ```python
   project1.columns
   ```
 
 * compute text facet on first column (**fails with OpenRefine >=3.2**):
 
-  ```
+  ```python
   project1.compute_facets(facet.TextFacet(project1.columns[0]))
   ```
 
   * print returned object
 
-    ```
+    ```python
     facets = project1.compute_facets(facet.TextFacet(project1.columns[0])).facets[0]
     for k in sorted(facets.choices, key=lambda k: facets.choices[k].count, reverse=True):
         print(facets.choices[k].count, k)
@@ -521,60 +524,62 @@ Project commands:
 
 * compute clusters on first column:
 
-  ```
+  ```python
   project1.compute_clusters(project1.columns[0])
   ```
 
 * apply rules from file to project:
 
-  ```
+  ```python
   project1.apply_operations('duplicates-deletion.json')
   ```
 
 * export project:
 
-  ```
+  ```python
   project1.export(export_format='tsv')
   ```
 
   * print the returned fileobject:
 
-    ```
+    ```python
     print(project1.export(export_format='tsv').read())
     ```
 
   * save the returned fileobject to file:
 
-    ```
+    ```python
     with open('export.tsv', 'wb') as f:
         f.write(project1.export(export_format='tsv').read())
     ```
 
 * templating export (**function was added in this fork**, see [Advanced Templating](#advanced-templating) above):
 
-  ```
-  data = project1.export_templating(prefix='''{ "events" : [
-  ''', template='''    { "name" : {{jsonize(cells["name"].value)}}, "purchase" : {{jsonize(cells["purchase"].value)}} }''', rowSeparator=''',
-  ''', suffix='''
+  ```python
+  data = project1.export_templating(
+      prefix='''{ "events" : [
+  ''',template='''    { "name" : {{jsonize(cells["name"].value)}}, "purchase" : {{jsonize(cells["purchase"].value)}} }''',
+      rowSeparator=''',
+  ''',suffix='''
   ] }''')
   print(data.read())
   ```
 
 * print help screen with available commands (many more!):
 
-  ```
+  ```python
   help(project1)
   ```
 
 * example for custom commands:
 
-  ```
+  ```python
   project1.do_json('get-rows')['total']
   ```
 
 * delete project:
 
-  ```
+  ```python
   project1.delete()
   ```
 
@@ -606,13 +611,13 @@ The Python client library includes several unit tests.
 
 - run all tests
 
-  ```
+  ```sh
   python setup.py test
   ```
 
 - run subset test_facet
 
-  ```
+  ```sh
   python setup.py --test-suite tests.test_facet
   ```
 
@@ -620,25 +625,25 @@ There is also a script that uses docker images to run the unit tests with differ
 
 - run tests on all OpenRefine versions (from 2.0 up to 3.2)
 
-  ```
+  ```sh
   ./tests.sh -a
   ```
 
 - run tests on tag 3.2
 
-  ```
+  ```sh
   ./tests.sh -t 3.2
   ```
 
 - run tests on tag 3.2 interactively (pause before and after tests)
 
-  ```
+  ```sh
   ./tests.sh -t 3.2 -i
   ```
 
 - run tests on tags 3.2 and 2.7
 
-  ```
+  ```sh
   ./tests.sh -t 3.2 -t 2.7
   ```
 
@@ -648,7 +653,7 @@ Note to myself: When releasing a new version...
 
 1. Run tests
 
-   ```
+   ```sh
    ./tests.sh -a
    ```
 
@@ -667,7 +672,7 @@ Note to myself: When releasing a new version...
 
    - One-file-executables will be available in `dist/`.
 
-     ```
+     ```sh
      git clone https://github.com/opencultureconsulting/openrefine-client.git
      cd openrefine-client
      python -m pip install . --user
@@ -681,7 +686,7 @@ Note to myself: When releasing a new version...
 
 5. Build package and upload to PyPI
 
-   ```
+   ```sh
    python3 setup.py sdist bdist_wheel
    python3 -m twine upload dist/*
    ```
