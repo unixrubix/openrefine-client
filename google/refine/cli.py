@@ -168,7 +168,8 @@ def export(project_id, output_file=None, export_format=None):
     if not export_format:
         export_format = 'tsv'
     if not output_file:
-        sys.stdout.write(project.export(export_format=export_format).read())
+        sys.stdout.write(project.export(
+            export_format=export_format).read().decode('UTF-8'))
     else:
         ext = os.path.splitext(output_file)[1][1:]
         if ext:
@@ -264,7 +265,7 @@ def templating(project_id,
     if not splitToFiles:
         if not output_file:
             sys.stdout.write(project.export_templating(
-                             **templateconfig).read())
+                             **templateconfig).read().decode('UTF-8'))
         else:
             with open(output_file, 'wb') as f:
                 f.write(project.export_templating(**templateconfig).read())
