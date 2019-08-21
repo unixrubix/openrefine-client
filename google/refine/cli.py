@@ -194,12 +194,12 @@ def info(project_id):
                                             '/project?project=' + project_id))
                 for k, v in projects_info.items():
                     if v:
-                        print('{0:>20}: {1}'.format(k, v))
+                        print(u'{0:>20}: {1}'.format(k, v))
         project_model = project.get_models()
         column_model = project_model['columnModel']
         columns = [column['name'] for column in column_model['columns']]
         for (i, v) in enumerate(columns, start=1):
-            print('{0:>20}: {1}'.format('column ' + str(i).zfill(3), v))
+            print(u'{0:>20}: {1}'.format('column ' + str(i).zfill(3), v))
     else:
         print('Error: No project found with id %s.\n'
               'Check existing projects with command --list' % (project_id))
@@ -215,7 +215,7 @@ def ls():
     projects.sort(key=lambda v: date_to_epoch(v[1]['modified']), reverse=True)
     if projects:
         for project_id, project_info in projects:
-            print('{0:>14}: {1}'.format(project_id, project_info['name']))
+            print(u'{0:>14}: {1}'.format(project_id, project_info['name']))
     else:
         print('Error: No projects found')
 

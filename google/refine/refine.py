@@ -429,15 +429,17 @@ class RefineProject:
 
     def export(self, export_format='tsv'):
         """Return a fileobject of a project's data."""
-        url = ('export-rows/' + urllib.quote(self.project_name()) + '.' +
-               export_format)
+        url = ('export-rows/' +
+               urllib.quote(self.project_name().encode('utf8')) +
+               '.' + export_format)
         return self.do_raw(url, data={'format': export_format})
 
     def export_templating(self, engine='', prefix='',
                           template='', rowSeparator='\n', suffix=''):
         """Return a fileobject of a project's data in templating mode."""
-        url = ('export-rows/' + urllib.quote(self.project_name()) + '.' +
-               'txt')
+        url = ('export-rows/' +
+               urllib.quote(self.project_name().encode('utf8')) +
+               '.' + 'txt')
         return self.do_raw(url, data={'format': 'template',
                                       'template': template,
                                       'engine': engine,
