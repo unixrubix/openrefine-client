@@ -186,25 +186,22 @@ def export(project_id, encoding=None, output_file=None, export_format=None):
 
 def info(project_id):
     """Show project metadata"""
-    projects = refine.Refine(refine.RefineServer()).list_projects().items()
-    if project_id in [item[0] for item in projects]:
-        project = refine.RefineProject(project_id)
-        projects = refine.Refine(refine.RefineServer()).list_projects().items()
-        for projects_id, projects_info in projects:
-            if project_id == projects_id:
-                print('{0:>20}: {1}'.format('id', project_id))
-                print('{0:>20}: {1}'.format('url', 'http://' +
-                                            refine.REFINE_HOST + ':' +
-                                            refine.REFINE_PORT +
-                                            '/project?project=' + project_id))
-                for k, v in projects_info.items():
-                    if v:
-                        print(u'{0:>20}: {1}'.format(k, v))
-        project_model = project.get_models()
-        column_model = project_model['columnModel']
-        columns = [column['name'] for column in column_model['columns']]
+    projects = refine.Refine(refine.RefineServer()).list_projects()
+    if project_id in projects.keys():
+        projectName = projects[project_id]['name']
+        print('{0:>20}: {1}'.format('id', project_id))
+        print('{0:>20}: {1}'.format('url', 'http://' +
+                                    refine.REFINE_HOST + ':' +
+                                    refine.REFINE_PORT +
+                                    '/project?project=' + project_id))
+        print(u'{0:>20}: {1}'.format(u'name', projectName))
+        for k, v in projects[project_id].items():
+            if v and k != 'name':
+                    print(u'{0:>20}: {1}'.format(k, v))
+        project_model = refine.RefineProject(project_id).get_models()
+        columns = [c['name'] for c in project_model['columnModel']['columns']]
         for (i, v) in enumerate(columns, start=1):
-            print(u'{0:>20}: {1}'.format('column ' + str(i).zfill(3), v))
+            print(u'{0:>20}: {1}'.format(u'column ' + str(i).zfill(3), v))
     else:
         print('Error: No project found with id %s.\n'
               'Check existing projects with command --list' % (project_id))
