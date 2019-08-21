@@ -427,25 +427,31 @@ class RefineProject:
             return 'ok'
         return response_json['code']  # can be 'ok' or 'pending'
 
-    def export(self, export_format='tsv'):
+    def export(self, encoding=None, export_format='tsv'):
         """Return a fileobject of a project's data."""
         url = ('export-rows/' +
                urllib.quote(self.project_name().encode('utf8')) +
                '.' + export_format)
-        return self.do_raw(url, data={'format': export_format})
+        data = {'format': export_format}
+        if encoding:
+            data['encoding'] = encoding
+        return self.do_raw(url, data)
 
-    def export_templating(self, engine='', prefix='',
+    def export_templating(self, encoding=None, engine='', prefix='',
                           template='', rowSeparator='\n', suffix=''):
         """Return a fileobject of a project's data in templating mode."""
         url = ('export-rows/' +
                urllib.quote(self.project_name().encode('utf8')) +
                '.' + 'txt')
-        return self.do_raw(url, data={'format': 'template',
-                                      'template': template,
-                                      'engine': engine,
-                                      'prefix': prefix,
-                                      'suffix': suffix,
-                                      'separator': rowSeparator})
+        data = {'format': 'template',
+                'template': template,
+                'engine': engine,
+                'prefix': prefix,
+                'suffix': suffix,
+                'separator': rowSeparator}
+        if encoding:
+            data['encoding'] = encoding
+        return self.do_raw(url, data)
 
     def export_rows(self, **kwargs):
         """Return an iterable of parsed rows of a project's data."""

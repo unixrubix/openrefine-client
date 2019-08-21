@@ -162,20 +162,25 @@ def download(url, output_file=None):
     print('Download to file %s complete' % output_file)
 
 
-def export(project_id, output_file=None, export_format=None):
+def export(project_id, encoding=None, output_file=None, export_format=None):
     """Dump a project to stdout or file."""
     project = refine.RefineProject(project_id)
     if not export_format:
         export_format = 'tsv'
     if not output_file:
+        if export_format in ['csv', 'tsv', 'txt']:
+                encoding = 'UTF-8'
         sys.stdout.write(project.export(
-            export_format=export_format).read().decode('UTF-8'))
+            export_format=export_format, encoding=encoding).read())
     else:
         ext = os.path.splitext(output_file)[1][1:]
         if ext:
             export_format = ext.lower()
+        if export_format in ['csv', 'tsv', 'txt']:
+            encoding = 'UTF-8'
         with open(output_file, 'wb') as f:
-            f.write(project.export(export_format).read())
+            f.write(project.export(
+                export_format=export_format, encoding=encoding).read())
         print('Export to file %s complete' % output_file)
 
 
@@ -222,6 +227,7 @@ def ls():
 
 def templating(project_id,
                template,
+               encoding='UTF-8',
                output_file=None,
                mode=None,
                prefix='',
@@ -240,7 +246,8 @@ def templating(project_id,
     templateconfig = {'prefix': prefix,
                       'suffix': suffix,
                       'template': template,
-                      'rowSeparator': rowSeparator}
+                      'rowSeparator': rowSeparator,
+                      'encoding': encoding}
 
     # construct the engine config
     if mode == 'record-based':
@@ -261,21 +268,20 @@ def templating(project_id,
         engine['facets'].append(textFilter)
     templateconfig.update({'engine': json.dumps(engine)})
 
-    # normal output or some refinable magic for splitToFiles functionality
     if not splitToFiles:
+        # normal output
         if not output_file:
             sys.stdout.write(project.export_templating(
-                             **templateconfig).read().decode('UTF-8'))
+                             **templateconfig).read())
         else:
             with open(output_file, 'wb') as f:
                 f.write(project.export_templating(**templateconfig).read())
             print('Export to file %s complete' % output_file)
     else:
-        # common config for row-based and record-based
+        # splitToFiles functionality
         prefix = templateconfig['prefix']
         suffix = templateconfig['suffix']
         split = '===|||THISISTHEBEGINNINGOFANEWRECORD|||==='
-        keyColumn = project.get_models()['columnModel']['keyColumnName']
         if not output_file:
             output_file = time.strftime('%Y%m%d')
         else:
@@ -283,23 +289,24 @@ def templating(project_id,
             ext = os.path.splitext(output_file)[1][1:]
         if not ext:
             ext = 'txt'
+        # generate config for subfeature suffixById
         if suffixById:
-            ids_template = ('{{forNonBlank(cells["' +
-                            keyColumn +
-                            '"].value, v, v, "")}}')
+            ids_template = ('{{forNonBlank(' +
+                            'with(row.columnNames[0],cn,cells[cn].value),' +
+                            'v,v,"")}}')
             ids_templateconfig = {'engine': json.dumps(engine),
                                   'template': ids_template,
-                                  'rowSeparator': '\n'}
+                                  'rowSeparator': '\n',
+                                  'encoding': encoding}
             ids = [line.rstrip('\n') for line in project.export_templating(
                    **ids_templateconfig) if line.rstrip('\n')]
+        # generate common config
         if mode == 'record-based':
             # record-based: split-character into template
             #               if key column is not blank (=record)
-            template = ('{{forNonBlank(cells["' +
-                        keyColumn +
-                        '"].value, v, "' +
-                        split +
-                        '", "")}}' +
+            template = ('{{forNonBlank(' +
+                         'with(row.columnNames[0],cn,cells[cn].value),' +
+                         'v,"' + split + '")}}' +
                         templateconfig['template'])
             templateconfig.update({'prefix': '',
                                    'suffix': '',
@@ -312,6 +319,7 @@ def templating(project_id,
                                    'suffix': '',
                                    'template': template,
                                    'rowSeparator': ''})
+        # execute
         records = project.export_templating(
             **templateconfig).read().split(split)
         del records[0]  # skip first blank entry
