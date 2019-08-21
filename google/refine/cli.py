@@ -188,15 +188,13 @@ def info(project_id):
     """Show project metadata"""
     projects = refine.Refine(refine.RefineServer()).list_projects()
     if project_id in projects.keys():
-        projectName = projects[project_id]['name']
         print('{0:>20}: {1}'.format('id', project_id))
         print('{0:>20}: {1}'.format('url', 'http://' +
                                     refine.REFINE_HOST + ':' +
                                     refine.REFINE_PORT +
                                     '/project?project=' + project_id))
-        print(u'{0:>20}: {1}'.format(u'name', projectName))
         for k, v in projects[project_id].items():
-            if v and k != 'name':
+            if v:
                     print(u'{0:>20}: {1}'.format(k, v))
         project_model = refine.RefineProject(project_id).get_models()
         columns = [c['name'] for c in project_model['columnModel']['columns']]

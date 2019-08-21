@@ -18,8 +18,14 @@ Script to provide a command line interface to a Refine server.
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
+import sys
 
 from google.refine import __main__, cli, refine
+
+# workaround für pyinstaller
+if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
 
 if __name__ == '__main__':
     __main__.main()
