@@ -138,7 +138,7 @@ group5.add_option('--linesPerRow', dest='linesPerRow',
 group5.add_option('--processQuotes', dest='processQuotes',
                   metavar='true/false', choices=('true', 'false'),
                   help='(csv,tsv), default: true')
-group5.add_option('--projectName', dest='project_name',
+group5.add_option('--projectName', dest='projectName',
                   help='(all formats), default: filename')
 group5.add_option('--projectTags', dest='projectTags',
                   action='append',
