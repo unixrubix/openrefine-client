@@ -22,10 +22,14 @@ import sys
 
 from google.refine import __main__, cli, refine
 
-# workaround für pyinstaller
+# workaround for pyinstaller
 if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
     reload(sys)
     sys.setdefaultencoding('utf-8')
+    if sys.platform == "win32":
+        import codecs
+        codecs.register(lambda name: codecs.lookup(
+            'utf-8') if name == 'cp65001' else None)
 
 if __name__ == '__main__':
     __main__.main()
