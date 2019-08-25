@@ -301,7 +301,7 @@ def templating(project_id,
             #               if key column is not blank (=record)
             template = ('{{forNonBlank(' +
                          'with(row.columnNames[0],cn,cells[cn].value),' +
-                         'v,"' + split + '")}}' +
+                         'v,"' + split + '", "")}}' +
                         templateconfig['template'])
             templateconfig.update({'prefix': '',
                                    'suffix': '',
