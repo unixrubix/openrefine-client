@@ -6,13 +6,15 @@ The [OpenRefine Python Client from PaulMakepeace](https://github.com/PaulMakepea
 This fork extends the command line interface (CLI) and is distributed as a convenient one-file-executable (Windows, Linux, macOS).
 It is also available via Docker Hub, PyPI and Binder.
 
+works with OpenRefine 2.7, 2.8, 3.0, 3.1, 3.2
+
 ## Download
 
 One-file-executables:
 
-- Windows: [openrefine-client_0-3-8_windows.exe](https://github.com/opencultureconsulting/openrefine-client/releases/download/v0.3.8/openrefine-client_0-3-8_windows.exe) (~5 MB)
-- macOS: [openrefine-client_0-3-8_macos](https://github.com/opencultureconsulting/openrefine-client/releases/download/v0.3.8/openrefine-client_0-3-8_macos) (~5 MB)
-- Linux: [openrefine-client_0-3-8_linux](https://github.com/opencultureconsulting/openrefine-client/releases/download/v0.3.8/openrefine-client_0-3-8_linux) (~5 MB)
+- Windows: [openrefine-client_0-3-9_windows.exe](https://github.com/opencultureconsulting/openrefine-client/releases/download/v0.3.9/openrefine-client_0-3-9_windows.exe) (~5 MB)
+- macOS: [openrefine-client_0-3-9_macos](https://github.com/opencultureconsulting/openrefine-client/releases/download/v0.3.9/openrefine-client_0-3-9_macos) (~5 MB)
+- Linux: [openrefine-client_0-3-9_linux](https://github.com/opencultureconsulting/openrefine-client/releases/download/v0.3.9/openrefine-client_0-3-9_linux) (~5 MB)
 
 For [Docker](#docker) containers, native [Python](#python) installation and free [Binder](#binder) on-demand server see the corresponding chapters below.
 
@@ -55,13 +57,13 @@ To use the client:
    - macOS:
 
      ```sh
-     chmod +x openrefine-client_0-3-8_macos
+     chmod +x openrefine-client_0-3-9_macos
      ```
 
    - Linux:
 
      ```sh
-     chmod +x openrefine-client_0-3-8_linux
+     chmod +x openrefine-client_0-3-9_linux
      ```
 
 3. Execute the file.
@@ -69,19 +71,19 @@ To use the client:
    - Windows:
 
      ```sh
-     .\openrefine-client_0-3-8_windows.exe
+     .\openrefine-client_0-3-9_windows.exe
      ```
 
    - macOS:
 
      ```sh
-     ./openrefine-client_0-3-8_macos
+     ./openrefine-client_0-3-9_macos
      ```
 
    - Linux:
 
      ```sh
-     ./openrefine-client_0-3-8_linux
+     ./openrefine-client_0-3-9_linux
      ```
 
 Using tab completion and command history is highly recommended:
@@ -100,25 +102,25 @@ Download example data (`--download`) and create project from file (`--create`):
 - Windows:
 
   ```sh
-  .\openrefine-client_0-3-8_windows.exe --download "https://git.io/fj5hF" --output=duplicates.csv
-  .\openrefine-client_0-3-8_windows.exe --download "https://git.io/fj5ju" --output=duplicates-deletion.json
-  .\openrefine-client_0-3-8_windows.exe --create duplicates.csv
+  .\openrefine-client_0-3-9_windows.exe --download "https://git.io/fj5hF" --output=duplicates.csv
+  .\openrefine-client_0-3-9_windows.exe --download "https://git.io/fj5ju" --output=duplicates-deletion.json
+  .\openrefine-client_0-3-9_windows.exe --create duplicates.csv
   ```
 
 - macOS:
 
   ```sh
-  ./openrefine-client_0-3-8_macos --download "https://git.io/fj5hF" --output=duplicates.csv
-  ./openrefine-client_0-3-8_macos --download "https://git.io/fj5ju" --output=duplicates-deletion.json
-  ./openrefine-client_0-3-8_macos --create duplicates.csv
+  ./openrefine-client_0-3-9_macos --download "https://git.io/fj5hF" --output=duplicates.csv
+  ./openrefine-client_0-3-9_macos --download "https://git.io/fj5ju" --output=duplicates-deletion.json
+  ./openrefine-client_0-3-9_macos --create duplicates.csv
   ```
 
 - Linux:
 
   ```sh
-  ./openrefine-client_0-3-8_linux --download "https://git.io/fj5hF" --output=duplicates.csv
-  ./openrefine-client_0-3-8_linux --download "https://git.io/fj5ju" --output=duplicates-deletion.json
-  ./openrefine-client_0-3-8_linux --create duplicates.csv
+  ./openrefine-client_0-3-9_linux --download "https://git.io/fj5hF" --output=duplicates.csv
+  ./openrefine-client_0-3-9_linux --download "https://git.io/fj5ju" --output=duplicates-deletion.json
+  ./openrefine-client_0-3-9_linux --create duplicates.csv
   ```
 
 Other commands:
@@ -230,7 +232,7 @@ When using this option, the first column should contain unique identifiers.
 [felixlohmeier/openrefine-client](https://hub.docker.com/r/felixlohmeier/openrefine-client/) [![Docker](https://img.shields.io/microbadger/image-size/felixlohmeier/openrefine-client?label=docker)](https://hub.docker.com/r/felixlohmeier/openrefine-client/)
 
 ```sh
-docker pull felixlohmeier/openrefine-client:v0.3.8
+docker pull felixlohmeier/openrefine-client:v0.3.9
 ```
 
 ### Option 1: Dockerized client
@@ -238,7 +240,7 @@ docker pull felixlohmeier/openrefine-client:v0.3.8
 Run client and mount current directory as workspace:
 
 ```sh
-docker run --rm --network=host -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.8
+docker run --rm --network=host -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.9
 ```
 
 The docker option `--network=host` allows you to connect to a local or remote OpenRefine via the host network:
@@ -246,13 +248,13 @@ The docker option `--network=host` allows you to connect to a local or remote Op
 - list projects on default URL (http://localhost:3333)
 
   ```sh
-  docker run --rm --network=host -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.8 --list
+  docker run --rm --network=host -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.9 --list
   ```
 
 - list projects on a remote server (http://example.com)
 
   ```sh
-  docker run --rm --network=host -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.8 -H example.com -P 80 --list
+  docker run --rm --network=host -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.9 -H example.com -P 80 --list
   ```
 
 Usage: same commands as explained above (see [Basic Commands](#basic-commands) and [Advanced Templating](#advanced-templating))
@@ -276,16 +278,16 @@ Run openrefine-client linked to a dockerized OpenRefine ([felixlohmeier/openrefi
 3. Run client with some [basic commands](#basic-commands): 1. download example files, 2. create project from file, 3. list projects, 4. show metadata, 5. export to terminal, 6. apply transformation rules (deduplication), 7. export again to terminal, 8. export to xls file and 9. delete project
 
    ```sh
-   docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.8 --download "https://git.io/fj5hF" --output=duplicates.csv
-   docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.8 --download "https://git.io/fj5ju" --output=duplicates-deletion.json
-   docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.8 -H openrefine-server --create duplicates.csv
-   docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.8 -H openrefine-server --list
-   docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.8 -H openrefine-server --info "duplicates"
-   docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.8 -H openrefine-server --export "duplicates"
-   docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.8 -H openrefine-server --apply duplicates-deletion.json "duplicates"
-   docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.8 -H openrefine-server --export "duplicates"
-   docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.8 -H openrefine-server --export --output=deduped.xls "duplicates"
-   docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.8 -H openrefine-server --delete "duplicates"
+   docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.9 --download "https://git.io/fj5hF" --output=duplicates.csv
+   docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.9 --download "https://git.io/fj5ju" --output=duplicates-deletion.json
+   docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.9 -H openrefine-server --create duplicates.csv
+   docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.9 -H openrefine-server --list
+   docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.9 -H openrefine-server --info "duplicates"
+   docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.9 -H openrefine-server --export "duplicates"
+   docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.9 -H openrefine-server --apply duplicates-deletion.json "duplicates"
+   docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.9 -H openrefine-server --export "duplicates"
+   docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.9 -H openrefine-server --export --output=deduped.xls "duplicates"
+   docker run --rm --network=openrefine -v ${PWD}:/data:z felixlohmeier/openrefine-client:v0.3.9 -H openrefine-server --delete "duplicates"
    ```
 
 4. Stop and delete server:
