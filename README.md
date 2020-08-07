@@ -672,17 +672,17 @@ Note to myself: When releasing a new version...
    - Run PyInstaller in Python 2 environments on native Windows, macOS and Linux. Should be "the oldest version of the OS you need to support"! Current release is built with: 
 
      - Ubuntu 16.04 LTS (64-bit)
-     - macOS Sierra 10.12
-     - Windows 10
+     - macOS Sierra 10.12 (64-bit)
+     - Windows 7 (32-bit)
 
    - One-file-executables will be available in `dist/`.
 
      ```sh
      git clone https://github.com/opencultureconsulting/openrefine-client.git
      cd openrefine-client
-     python -m pip install . --user
-     python -m pip install pyinstaller --user
-     pyinstaller --onefile refine.py --hidden-import google.refine.__main__
+     python2 -m pip install pyinstaller --user
+     python2 -m pip install urllib2_file --user
+     python2 -m PyInstaller --onefile refine.py --hidden-import google.refine.__main__
      ```
 
 4. Run test with Linux executable
@@ -711,7 +711,6 @@ Note to myself: When releasing a new version...
 8. Bump openrefine-client version in related projects
 
    - openrefine-batch: [openrefine-batch.sh](https://github.com/opencultureconsulting/openrefine-batch/blob/master/openrefine-batch.sh#L7) and [openrefine-batch-docker.sh](https://github.com/opencultureconsulting/openrefine-batch/blob/master/openrefine-batch-docker.sh)
-
    - openrefineder: [postBuild](https://github.com/felixlohmeier/openrefineder/blob/master/postBuild)
 
 ## Credits
