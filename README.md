@@ -147,7 +147,7 @@ If your OpenRefine server is running somewhere else then you may set hostname an
 - set host: `-H example.com`
 - set port: `-P 80`
 
-### Advanced Templating
+### Templating
 
 The OpenRefine [Templating](https://github.com/OpenRefine/OpenRefine/wiki/Export-As-YAML) supports exporting data in any text format (i.e. to construct JSON or XML).
 The graphical user interface offers four input fields:
@@ -219,6 +219,31 @@ There is another option to use the value in the first column instead:
 
 Because our project "advanced" contains duplicates in the first column "email" this command will overwrite files (e.g. `advanced_melanie.white@example2.edu.json`).
 When using this option, the first column should contain unique identifiers.
+
+### Append data to an existing project
+
+OpenRefine does not support appending rows to an existing project.
+As long as the [feature request](https://github.com/OpenRefine/OpenRefine/issues/715) is not yet implemented, you can use the openrefine-client to script a workaround:
+
+1. export existing project as csv
+2. put old and new data into a zip archive
+3. create new project by importing the zip archive
+
+Here is an example that replaces the existing project:
+
+```
+openrefine-client --export myproject --output old.csv
+openrefine-client --delete myproject
+zip combined.zip old.csv new.csv
+openrefine-client --create combined.zip --format csv --projectName myproject
+```
+
+Note that the project id will change.
+If you want to distinguish between old and new data, you can use the additional flag includeFileSources:
+
+```
+openrefine-client --create combined.zip --format csv --projectName myproject --includeFileSources true
+```
 
 ### See also
 
