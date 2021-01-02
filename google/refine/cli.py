@@ -41,7 +41,6 @@ def apply(project_id, history_file):
         print('File %s has been successfully applied to project %s' %
               (history_file, project_id))
 
-
 def create(project_file,
            project_format=None,
            columnWidths=None,
@@ -165,17 +164,19 @@ def download(url, output_file=None):
 def export(project_id, encoding=None, output_file=None, export_format=None):
     """Dump a project to stdout or file."""
     project = refine.RefineProject(project_id)
-    if not export_format:
-        export_format = 'tsv'
     if not output_file:
+        if not export_format:
+            export_format = 'tsv'
         if export_format in ['csv', 'tsv', 'txt']:
                 encoding = 'UTF-8'
         sys.stdout.write(project.export(
             export_format=export_format, encoding=encoding).read())
     else:
         ext = os.path.splitext(output_file)[1][1:]
-        if ext:
+        if ext and not export_format:
             export_format = ext.lower()
+        if not export_format:
+            export_format = 'tsv'
         if export_format in ['csv', 'tsv', 'txt']:
             encoding = 'UTF-8'
         with open(output_file, 'wb') as f:
