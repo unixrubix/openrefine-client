@@ -679,11 +679,12 @@ There is also a script that uses docker images to run the unit tests with differ
 
 Note to myself: When releasing a new version...
 
-1. Run tests
+1. Run functional tests
 
    ```sh
-   ./tests.sh -a
-   jupyter notebook tests/cli_python2.ipynb
+   for v in 2.7 2.8 3.0 3.1 3.2; do
+      ./tests-cli.sh $v
+   done
    ```
 
 2. Make final changes in Git
@@ -710,11 +711,12 @@ Note to myself: When releasing a new version...
      python2 -m PyInstaller --onefile refine.py --hidden-import google.refine.__main__
      ```
 
-4. Run test with Linux executable
+4. Run functional tests with Linux executable
 
    ```sh
-   ./tests.sh -a
-   jupyter notebook tests/cli_bash.ipynb
+   for v in 2.7 2.8 3.0 3.1 3.2; do
+      ./tests-cli.sh $v openrefine-client_0-3-7_linux
+   done
    ```
 
 5. Create release in GitHub
