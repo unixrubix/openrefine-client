@@ -200,7 +200,7 @@ def info(project_id):
         project_model = refine.RefineProject(project_id).get_models()
         columns = [c['name'] for c in project_model['columnModel']['columns']]
         for (i, v) in enumerate(columns, start=1):
-            print(u'{0:>20}: {1}'.format(u'column ' + str(i).zfill(3), v))
+            print(u'{0:>20}: {1}'.format(u'column ' + str(i).zfill(3), v).encode('utf-8'))
     else:
         print('Error: No project found with id %s.\n'
               'Check existing projects with command --list' % (project_id))
@@ -216,7 +216,7 @@ def ls():
     projects.sort(key=lambda v: date_to_epoch(v[1]['modified']), reverse=True)
     if projects:
         for project_id, project_info in projects:
-            print(u'{0:>14}: {1}'.format(project_id, project_info['name']))
+            print(u'{0:>14}: {1}'.format(project_id, project_info['name']).encode('utf-8'))
     else:
         print('Error: No projects found')
 
