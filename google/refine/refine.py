@@ -53,6 +53,18 @@ class RefineServer(object):
             server = self.url()
         self.server = server[:-1] if server.endswith('/') else server
         self.__version = None     # see version @property below
+        self.token = None         # CSRF token introduced in OpenRefine 3.3
+        self.get_csrf_token()
+
+    def get_csrf_token(self):
+        """Return csrf token."""
+        try:
+            url = self.server + '/command/core/get-csrf-token'
+            response = json.loads(urllib2.urlopen(url).read())
+            self.token = response['token']
+            return self.token
+        except:
+            pass # fail silently to not disturb usage of OpenRefine <3.3
 
     def urlopen(self, command, data=None, params=None, project_id=None):
         """Open a Refine URL and with optional query params and POST data.
@@ -73,6 +85,9 @@ class RefineServer(object):
                 data['project'] = project_id
             else:
                 params['project'] = project_id
+        # be lazy and send the token for each API call (even when not needed)
+        if self.token:
+            params['csrf_token'] = self.token
         if params:
             url += '?' + urllib.urlencode(params)
         req = urllib2.Request(url)

@@ -6,7 +6,7 @@ The [OpenRefine Python Client from PaulMakepeace](https://github.com/PaulMakepea
 This fork extends the command line interface (CLI) and is distributed as a convenient one-file-executable (Windows, Linux, macOS).
 It is also available via Docker Hub, PyPI and Binder.
 
-works with OpenRefine 2.7, 2.8, 3.0, 3.1, 3.2
+works with OpenRefine 2.7, 2.8, 3.0, 3.1, 3.2, 3.3, 3.4, 3.4.1
 
 ## Download
 
@@ -714,7 +714,7 @@ Note to myself: When releasing a new version...
 4. Run functional tests with Linux executable
 
    ```sh
-   for v in 2.7 2.8 3.0 3.1 3.2; do
+   for v in 2.7 2.8 3.0 3.1 3.2 3.3 3.4 3.4.1; do
       ./tests-cli.sh $v openrefine-client_0-3-7_linux
    done
    ```
