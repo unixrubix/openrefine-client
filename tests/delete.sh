@@ -27,6 +27,7 @@ DATA
 # ================================== ACTION ================================== #
 
 ${cmd} --create "tmp/${t}/${t}.csv"
+${cmd} --list | grep "${t}" || exit 1
 ${cmd} --delete "${t}"
 ${cmd} --list | grep "${t}" | cut -d ':' -f 2 > "tmp/${t}/${t}.output"
 
