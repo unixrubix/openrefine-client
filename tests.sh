@@ -17,8 +17,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 # defaults:
-all=(3.2-java12 3.2-java11 3.2-java10 3.2-java9 3.2 3.1-java9 3.1 3.0-java9 3.0 2.8-java9 2.8 2.8-java7 2.7 2.7-java7 2.5-java7 2.5-java6 2.1-java6 2.0-java6)
-main=(3.2 3.1 3.0 2.8 2.7 2.5-java6 2.1-java6 2.0-java6)
+all=(3.4.1 3.4 3.3 3.2-java12 3.2-java11 3.2-java10 3.2-java9 3.2 3.1-java9 3.1 3.0-java9 3.0 2.8-java9 2.8 2.8-java7 2.7 2.7-java7 2.5-java7 2.5-java6 2.1-java6 2.0-java6)
+main=(3.4.1 3.4 3.3 3.2 3.1 3.0 2.8 2.7 2.5-java6 2.1-java6 2.0-java6)
 interactively=false
 port="3333"
 
@@ -31,10 +31,10 @@ Script for running tests with different OpenRefine and Java versions.
 It uses docker images from https://hub.docker.com/r/felixlohmeier/openrefine.
 
 Examples:
-./tests.sh -a            # run tests on all OpenRefine versions (from 2.0 up to 3.2)
-./tests.sh -t 3.2        # run tests on tag 3.2
-./tests.sh -t 3.2 -i     # run tests on tag 3.2 interactively (pause before and after tests)
-./tests.sh -t 3.2 -t 2.7 # run tests on tags 3.2 and 2.7
+./tests.sh -a              # run tests on all OpenRefine versions (from 2.0 up to 3.4.1)
+./tests.sh -t 3.4.1        # run tests on tag 3.4.1
+./tests.sh -t 3.4.1 -i     # run tests on tag 3.4.1 interactively (pause before and after tests)
+./tests.sh -t 3.4.1 -t 2.7 # run tests on tags 3.4.1 and 2.7
 
 Advanced:
 ./tests.sh -j                # run tests on all OpenRefine versions and each with all supported Java versions (requires a lot of docker images to be downloaded!)
