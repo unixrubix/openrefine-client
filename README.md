@@ -248,7 +248,7 @@ openrefine-client --create combined.zip --format csv --projectName myproject --i
 ### See also
 
 - Linux Bash script to run OpenRefine in batch mode (import, transform, export): [openrefine-batch](https://github.com/opencultureconsulting/openrefine-batch)
-- [Jupyter notebook demonstrating usage in Linux Bash](https://nbviewer.jupyter.org/github/felixlohmeier/openrefineder/blob/master/openrefine-client-bash.ipynb)
+- [Jupyter notebook demonstrating usage in Linux Bash](https://nbviewer.jupyter.org/github/felixlohmeier/openrefineder/blob/master/notebooks/openrefine-client-bash.ipynb)
 - Use case [HOS-MetadataTransformations](https://github.com/subhh/HOS-MetadataTransformations): Automated workflow for harvesting, transforming and indexing of metadata using metha, OpenRefine and Solr. Part of the Hamburg Open Science "Schaufenster" software stack.
 - Use case [Data processing of ILS data to facilitate a new discovery layer for the German Literature Archive (DLA)](https://doi.org/10.5281/zenodo.2678113): Custom data processing pipeline based on Pandas (a Python library) and OpenRefine.
 
@@ -624,8 +624,8 @@ See also:
 - free to use on-demand server with Jupyter notebook, OpenRefine and Bash
 - no registration needed, will start within a few minutes
 - [restricted](https://mybinder.readthedocs.io/en/latest/faq.html#how-much-memory-am-i-given-when-using-binder) to 2 GB RAM and server will be deleted after 10 minutes of inactivity
-- [bash_kernel demo notebook](https://nbviewer.jupyter.org/github/felixlohmeier/openrefineder/blob/master/openrefine-client-bash.ipynb) for using the openrefine-client in a Linux Bash environment [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/felixlohmeier/openrefineder/master?urlpath=/tree/openrefine-client-bash.ipynb)
-- [python2 demo notebook](https://nbviewer.jupyter.org/github/felixlohmeier/openrefineder/blob/master/openrefine-client-python.ipynb) for using the openrefine-client in a Python 2 environment [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/felixlohmeier/openrefineder/master?urlpath=/tree/openrefine-client-python.ipynb)
+- [bash_kernel demo notebook](https://nbviewer.jupyter.org/github/felixlohmeier/openrefineder/blob/master/notebooks/openrefine-client-bash.ipynb) for using the openrefine-client in a Linux Bash environment [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/felixlohmeier/openrefineder/master?urlpath=/tree/notebooks/openrefine-client-bash.ipynb)
+- [python2 demo notebook](https://nbviewer.jupyter.org/github/felixlohmeier/openrefineder/blob/master/notebooks/openrefine-client-python.ipynb) for using the openrefine-client in a Python 2 environment [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/felixlohmeier/openrefineder/master?urlpath=/tree/notebooks/openrefine-client-python.ipynb)
 
 ## Development
 
@@ -752,7 +752,7 @@ Note to myself: When releasing a new version...
 8. Bump openrefine-client version in related projects
 
    - openrefine-batch: [openrefine-batch.sh](https://github.com/opencultureconsulting/openrefine-batch/blob/master/openrefine-batch.sh#L7) and [openrefine-batch-docker.sh](https://github.com/opencultureconsulting/openrefine-batch/blob/master/openrefine-batch-docker.sh)
-   - openrefineder: [postBuild](https://github.com/felixlohmeier/openrefineder/blob/master/postBuild)
+   - openrefineder: [postBuild](https://github.com/felixlohmeier/openrefineder/blob/master/binder/postBuild)
 
 ## Credits
 
