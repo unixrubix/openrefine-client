@@ -32,7 +32,8 @@ DATA
 
 # ================================== ACTION ================================== #
 
-${cmd} --create "tmp/${t}/${t}.csv" --processQuotes "false"
+# OpenRefine 4.x fails without manually set headerLines
+${cmd} --create "tmp/${t}/${t}.csv" --processQuotes "false" --headerLines 1
 ${cmd} --export "${t}" --output "tmp/${t}/${t}.output"
 
 # =================================== TEST =================================== #
