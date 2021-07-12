@@ -38,12 +38,13 @@ DATA
 cat << "DATA" > "tmp/${t}/${t}.transform"
 [
   {
-    "op": "core/column-removal",
-    "columnName": "root"
-  },
-  {
-    "op": "core/column-removal",
-    "columnName": "root - record"
+    "op": "core/column-reorder",
+    "columnNames": [
+      "root - record - icon",
+      "root - record - code",
+      "root - record - meaning"
+    ],
+    "description": "Reorder columns"
   },
   {
     "op": "core/row-removal",
