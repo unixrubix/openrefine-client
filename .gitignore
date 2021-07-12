@@ -4,7 +4,6 @@ dist
 .*
 openrefine_client.egg-info
 refine.spec
-openrefine-2.*
-openrefine-3.*
+openrefine-*
 openrefine-client_*
 tests-cli.log

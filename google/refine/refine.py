@@ -413,7 +413,10 @@ class RefineProject:
         for i, column in enumerate(column_model['columns']):
             name = column['name']
             self.column_order[name] = i
-            column_index[name] = column['cellIndex']
+            try:
+                column_index[name] = column['cellIndex']
+            except KeyError:
+                column_index[name] = i
         self.key_column = column_model['keyColumnName']
         self.has_records = response['recordModel'].get('hasRecords', False)
         self.rows_response_factory = RowsResponseFactory(column_index)

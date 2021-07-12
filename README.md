@@ -1,4 +1,4 @@
-# OpenRefine Python Client with extended command line interface
+# OpenRefine Python Client with extended command line interface (⌨️ for 💎)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/43ad9bfd707b4627bd45e5c5f912a8e0)](https://www.codacy.com/gh/opencultureconsulting/openrefine-client/dashboard) [![Docker](https://img.shields.io/microbadger/image-size/felixlohmeier/openrefine-client?label=docker)](https://hub.docker.com/r/felixlohmeier/openrefine-client/) [![PyPI](https://img.shields.io/pypi/v/openrefine-client)](https://pypi.org/project/openrefine-client/) [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/felixlohmeier/openrefineder/master)
 
