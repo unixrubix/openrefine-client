@@ -6,7 +6,7 @@ The [OpenRefine Python Client from PaulMakepeace](https://github.com/PaulMakepea
 This fork extends the command line interface (CLI) and is distributed as a convenient one-file-executable (Windows, Linux, macOS).
 It is also available via Docker Hub, PyPI and Binder.
 
-works with OpenRefine 2.7, 2.8, 3.0, 3.1, 3.2, 3.3, 3.4, 3.4.1
+works with OpenRefine 2.7, 2.8, 3.0, 3.1, 3.2, 3.3, 3.4, 3.4.1, 3.5.0
 
 ## Download
 
@@ -297,7 +297,7 @@ Run openrefine-client linked to a dockerized OpenRefine ([felixlohmeier/openrefi
 2. Run server (will be available at http://localhost:3333)
 
    ```sh
-   docker run -d -p 3333:3333 --network=openrefine --name=openrefine-server felixlohmeier/openrefine:3.4.1
+   docker run -d -p 3333:3333 --network=openrefine --name=openrefine-server felixlohmeier/openrefine:3.5.0
    ```
 
 3. Run client with some [basic commands](#basic-commands): 1. download example files, 2. create project from file, 3. list projects, 4. show metadata, 5. export to terminal, 6. apply transformation rules (deduplication), 7. export again to terminal, 8. export to xls file and 9. delete project
@@ -337,7 +337,7 @@ Customize OpenRefine server:
 - Example for [allocating more memory](https://github.com/OpenRefine/OpenRefine/wiki/FAQ#out-of-memory-errors---feels-slow---could-not-reserve-enough-space-for-object-heap) to OpenRefine with additional option `-m 4G`
 
   ```sh
-  docker run -d -p 3333:3333 --network=openrefine --name=openrefine-server felixlohmeier/openrefine:3.4.1 -i 0.0.0.0 -d /data -m 4G
+  docker run -d -p 3333:3333 --network=openrefine --name=openrefine-server felixlohmeier/openrefine:3.5.0 -i 0.0.0.0 -d /data -m 4G
   ```
 
 - The OpenRefine version is defined by the docker tag.
@@ -651,42 +651,42 @@ The Python client library includes several unit tests.
 
 There is also a script that uses docker images to run the unit tests with different versions of OpenRefine.
 
-- run tests on all OpenRefine versions (from 2.0 up to 3.4.1)
+- run tests on all OpenRefine versions (from 2.0 up to 3.5.0)
 
   ```sh
   ./tests.sh -a
   ```
 
-- run tests on tag 3.4.1
+- run tests on tag 3.5.0
 
   ```sh
-  ./tests.sh -t 3.4.1
+  ./tests.sh -t 3.5.0
   ```
 
-- run tests on tag 3.4.1 interactively (pause before and after tests)
+- run tests on tag 3.5.0 interactively (pause before and after tests)
 
   ```sh
-  ./tests.sh -t 3.4.1 -i
+  ./tests.sh -t 3.5.0 -i
   ```
 
-- run tests on tags 3.4.1 and 2.7
+- run tests on tags 3.5.0 and 2.7
 
   ```sh
-  ./tests.sh -t 3.4.1 -t 2.7
+  ./tests.sh -t 3.5.0 -t 2.7
   ```
 
 For Linux there are also functional tests for all command line options.
 
-- run all functional tests on OpenRefine 3.4
+- run all functional tests on OpenRefine 3.5.0
 
   ```sh
-  ./tests-cli.sh 3.4.1
+  ./tests-cli.sh 3.5.0
   ```
 
-- run all functional tests on OpenRefine 3.4 with one-file-executable
+- run all functional tests on OpenRefine 3.5.0 with one-file-executable
 
   ```sh
-  ./tests-cli.sh 3.4.1 openrefine-client_0-3-7_linux
+  ./tests-cli.sh 3.5.0 openrefine-client_0-3-7_linux
   ```
 
 ### Distributing
@@ -696,7 +696,7 @@ Note to myself: When releasing a new version...
 1. Run functional tests
 
    ```sh
-   for v in 2.7 2.8 3.0 3.1 3.2 3.3 3.4 3.4.1; do
+   for v in 2.7 2.8 3.0 3.1 3.2 3.3 3.4 3.4.1 3.5.0; do
       ./tests-cli.sh $v
    done
    ```
@@ -728,7 +728,7 @@ Note to myself: When releasing a new version...
 4. Run functional tests with Linux executable
 
    ```sh
-   for v in 2.7 2.8 3.0 3.1 3.2 3.3 3.4 3.4.1; do
+   for v in 2.7 2.8 3.0 3.1 3.2 3.3 3.4 3.4.1 3.5.0; do
       ./tests-cli.sh $v openrefine-client_0-3-7_linux
    done
    ```
