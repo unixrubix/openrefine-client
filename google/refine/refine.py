@@ -97,7 +97,12 @@ class RefineServer(object):
         try:
             response = urllib2.urlopen(req)
         except urllib2.HTTPError as e:
-            raise Exception('HTTP %d "%s" for %s\n\t%s' % (e.code, e.msg, e.geturl(), data))
+            if 'Missing or invalid csrf_token parameter' == e.msg:
+                self.get_csrf_token()
+                params['csrf_token'] = self.token
+                response = urllib2.urlopen(req)
+            else:
+                raise Exception('HTTP %d "%s" for %s\n\t%s' % (e.code, e.msg, e.geturl(), data))
         except urllib2.URLError as e:
             raise urllib2.URLError(
                 '%s for %s. No Refine server reachable/running; ENV set?' %
