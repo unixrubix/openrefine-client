@@ -2,3 +2,5 @@ include README.md
 include COPYING.txt
 recursive-include tests/data *.csv
 recursive-include tests      *.py
+recursive-include openrefine/refine *.py
+recursive-include openrefine *.py

@@ -9,11 +9,10 @@ OPENREFINE_HOST and OPENREFINE_PORT.
 
 # Copyright (c) 2011 Paul Makepeace, Real Programmers. All rights reserved.
 
-from __future__ import absolute_import
 import csv
 import unittest
 
-from openrefine.refine import refine
+from google.refine import refine
 from tests import refinetest
 
 
@@ -61,7 +60,7 @@ class RefineTest(refinetest.RefineTestCase):
 
     def test_open_export(self):
         fp = refine.RefineProject(self.project.project_url()).export()
-        line = next(fp)
+        line = fp.next()
         self.assertTrue('email' in line)
         for line in fp:
             self.assertTrue('M' in line or 'F' in line)
@@ -70,7 +69,7 @@ class RefineTest(refinetest.RefineTestCase):
     def test_open_export_csv(self):
         fp = refine.RefineProject(self.project.project_url()).export()
         csv_fp = csv.reader(fp, dialect='excel-tab')
-        row = next(csv_fp)
+        row = csv_fp.next()
         self.assertTrue(row[0] == 'email')
         for row in csv_fp:
             self.assertTrue(row[3] == 'F' or row[3] == 'M')

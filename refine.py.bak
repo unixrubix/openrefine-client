@@ -18,11 +18,9 @@ Script to provide a command line interface to a Refine server.
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>
 
-from __future__ import absolute_import
 import sys
-from importlib import reload
 
-from openrefine.refine import __main__, cli, refine
+from google.refine import __main__, cli, refine
 
 # workaround for pyinstaller
 if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):

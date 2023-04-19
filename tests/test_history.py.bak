@@ -5,10 +5,9 @@ test_history.py
 
 # Copyright (c) 2011 Paul Makepeace, Real Programmers. All rights reserved.
 
-from __future__ import absolute_import
 import unittest
 
-from openrefine.refine.history import *
+from google.refine.history import *
 
 
 class HistoryTest(unittest.TestCase):
